@@ -1,12 +1,13 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:test_app/business_layer/category_class.dart';
+import 'package:test_app/global/en_category.dart';
 import 'package:test_app/widgets/button_NavBar.dart';
 import 'package:test_app/widgets/category_container.dart';
 import 'package:test_app/widgets/custom_AppBar.dart';
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,6 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
  Color forCol = Colors.deepPurple;
  Color titCol = Colors.grey;
  int currentKey = 0;
+
+ final List<ClsCategory> _list =[ ClsCategory(enCategory: EnCategory.buying),
+   ClsCategory(enCategory: EnCategory.selling),ClsCategory(enCategory: EnCategory.trades),
+   ClsCategory(enCategory: EnCategory.videos),ClsCategory(enCategory: EnCategory.deals),
+   ClsCategory(enCategory: EnCategory.caseStudy)];
+
 
    @override
    Widget build(BuildContext context) {
@@ -35,112 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
                        padding: const EdgeInsets.symmetric(horizontal: 15),
                        child: GridView.count(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 15,controller: ScrollController(),
                            scrollDirection: Axis.vertical,padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),shrinkWrap:true ,
-                           children: [
-                             currentKey==1?
-                             CategoryContainer(cusIcon: Icons.shopping_cart_outlined,cusTitle: "Buying",Tapped:
-                                 (){}
-                               ,backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                                 :
-                             CategoryContainer(cusIcon: Icons.shopping_cart_outlined,cusTitle: "Buying",Tapped:
-                                 (){setState(() {currentKey = 1;
-                             });}),
-                             currentKey==2?
-                             CategoryContainer(cusIcon: Icons.store_mall_directory_outlined,cusTitle: "Selling",Tapped:
-                                 (){},backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                             :
-                             CategoryContainer(cusIcon: Icons.store_mall_directory_outlined,cusTitle: "Selling",Tapped:
-                                 (){setState(() {
-                                   currentKey=2;
-                                 });})
-                             ,
-                             currentKey==3?
-                             CategoryContainer(cusIcon: Icons.shop,cusTitle: "Trades",Tapped:
-                                 (){},backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                             :
-                             CategoryContainer(cusIcon: Icons.shop,cusTitle: "Trades",Tapped:
-                                 (){setState(() {currentKey = 3;});})
-                             ,
-                             currentKey==4?
-                             CategoryContainer(cusIcon: Icons.slow_motion_video_outlined,cusTitle: "Videos",Tapped:
-                                 (){setState(() {});},backColor: backCol,forColor: forCol,titleColor: titCol)
-                             :
-                             CategoryContainer(cusIcon: Icons.slow_motion_video_outlined,cusTitle: "Videos",Tapped:
-                                 (){setState(() {currentKey = 4;
-                             });})
+                           children:[
+                             for(int i = 0 ; i<_list.length;i++)
+                               CategoryContainer(Tapped: (){onTapped(i);},category:  _list[i],)
 
-                             ,
-                             currentKey==5?
-                             CategoryContainer(cusIcon: Icons.local_offer,cusTitle: "Deals" ,Tapped:
-                                 (){setState(){}},backColor: backCol,forColor: forCol,titleColor: titCol)
-                             :
-                             CategoryContainer(cusIcon: Icons.local_offer,cusTitle: "Deals" ,Tapped:
-                                 (){setState(() {currentKey = 5;
-                             });})
-                             ,
-                             currentKey==6?
-                             CategoryContainer(cusIcon: Icons.menu_book,cusTitle: "Case Study",Tapped:
-                                 (){},backColor: backCol,forColor: forCol,titleColor: titCol)
-                             :
-                             CategoryContainer(cusIcon: Icons.menu_book,cusTitle: "Case Study",Tapped:
-                                 (){setState(() {currentKey = 6;
-                             });})
-                             ,
-                             currentKey==7?
-                             CategoryContainer(cusIcon: Icons.shopping_cart_outlined,cusTitle: "Buying",Tapped:
-                                 (){}
-                               ,backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                                 :
-                             CategoryContainer(cusIcon: Icons.shopping_cart_outlined,cusTitle: "Buying",Tapped:
-                                 (){setState(() {currentKey = 7;
-                             });}),
-                             currentKey==8?
-                             CategoryContainer(cusIcon: Icons.store_mall_directory_outlined,cusTitle: "Selling",Tapped:
-                                 (){},backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                                 :
-                             CategoryContainer(cusIcon: Icons.store_mall_directory_outlined,cusTitle: "Selling",Tapped:
-                                 (){setState(() {
-                               currentKey=8;
-                             });})
-                             ,
-                             currentKey==9?
-                             CategoryContainer(cusIcon: Icons.shop,cusTitle: "Trades",Tapped:
-                                 (){},backColor: Colors.deepPurple,forColor: Colors.white,titleColor: Colors.white,)
-                                 :
-                             CategoryContainer(cusIcon: Icons.shop,cusTitle: "Trades",Tapped:
-                                 (){setState(() {currentKey = 9;});})
-                             ,
-                             currentKey==10?
-                             CategoryContainer(cusIcon: Icons.slow_motion_video_outlined,cusTitle: "Videos",Tapped:
-                                 (){setState(() {});},backColor: backCol,forColor: forCol,titleColor: titCol)
-                                 :
-                             CategoryContainer(cusIcon: Icons.slow_motion_video_outlined,cusTitle: "Videos",Tapped:
-                                 (){setState(() {currentKey = 10;
-                             });})
-
-                             ,
-                             currentKey==11?
-                             CategoryContainer(cusIcon: Icons.local_offer,cusTitle: "Deals" ,Tapped:
-                                 (){setState(){}},backColor: backCol,forColor: forCol,titleColor: titCol)
-                                 :
-                             CategoryContainer(cusIcon: Icons.local_offer,cusTitle: "Deals" ,Tapped:
-                                 (){setState(() {currentKey = 11;
-                             });})
-                             ,
-                             currentKey==12?
-                             CategoryContainer(cusIcon: Icons.menu_book,cusTitle: "Case Study",Tapped:
-                                 (){},backColor: backCol,forColor: forCol,titleColor: titCol)
-                                 :
-                             CategoryContainer(cusIcon: Icons.menu_book,cusTitle: "Case Study",Tapped:
-                                 (){setState(() {currentKey = 12;
-                             });})
-                             ,
-
-                           ]),
+                           ] ),
                      ),
                    ),
                  ),
-
-            //     CategoryContainer(cusIcon: Icons.shopping_cart_outlined,cusTitle: "Buying",Tapped: (){},)
 
                ],
              )
@@ -149,15 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
    }
+void onTapped(int index)
+{
+setState(() {
+  for(int i = 0 ;i < _list.length ; i++){
+    i!=index?_list[i].reSet():_list[i].click();
+  }
 
-   void onTapp(int val)
-   {
-     setState(() {
-       forCol = Colors.white;
-       backCol = Colors.deepPurple;
-       titCol = Colors.white;
-       currentKey=val;
-     });
-   }
+});
 }
-
+}
